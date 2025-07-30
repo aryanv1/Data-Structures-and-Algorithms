@@ -1,0 +1,32 @@
+- 1's Compliment -> Flip all bits 
+- 2's Compliment -> Perform 1's Compliment and add 1
+- 31st bit is always for sign of number
+- (number - 1) = 2's Compliment + flipping the bits
+- Range of Int -> -2^31 to 2^31 - 1
+- For negative numbers, computer stores two's compliment(of +ve number i.e, -ve number without sign) in it
+- (2^31-1) << 1 -> overflow because number will go out of the boundary -> only perform left shift inside 32 bits
+- negation of number -> how computer stores it -> first flip the bits, then check it 31st bit if 1/0, if 1 then perform 2s Compliment of remaining bits and stores whole number or if that bit is 0 then nothing to do just store whole number (for +ve numbers)
+- For negation of -ve numbers, above process is done on 2's Compliment of the number.
+
+- Swap two numbers without third variable
+	a = a^b;							a = a + b
+	b = a^b; -> (a^b)^b -> a 			b = a - b -> (a+b)-b
+	a = a^b; -> (a^b)^a -> b 			a = a - b -> a-(a-b)
+
+- Toggle the bit at any position
+	(1 0 0 1) -> toggle 2nd bit from LSB -> (1 0 1 1)
+	num ^ (1 << bit number to toggle) -> (1 0 0 1)^(0 0 1 0) = (1 0 1 1)
+
+- Unset the rightmost set bit -> for reverse do the same thing on negation of number and then again negate it
+	number & (number - 1)
+	number - 1 = unset the rightmost bit and all bits to its left remains same and all bits to its right becomes zero
+
+- Check if Power of 2 -> only have 1 set bit
+	if(num & (num - 1) == 0) then Yes else No -> unsetting the only bit will result in number becoming zero
+
+- Number of set bits -> go on turning off the rightmost set bit
+	while(n)
+	{
+		n = n&(n-1);
+		cnt++;
+	}
