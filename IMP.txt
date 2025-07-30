@@ -60,11 +60,11 @@ Pattern 10: Strongly Connected Components
 	→ Evaluate Division
 	→ Minimum Days to Disconnect
 Pattern 11: Eulerian & Hamiltonian Paths
- → Course Schedule IV
-→ Find Itinerary
-→ Hamiltonian Path in Directed Graph
-→ Eulerian Circuit
-→ Reconstruct Itinerary
+ 	→ Course Schedule IV
+	→ Find Itinerary
+	→ Hamiltonian Path in Directed Graph
+	→ Eulerian Circuit
+	→ Reconstruct Itinerary
 Pattern 12: Planets & Queries
 	→ Dynamic Connectivity
 	→ Reachability Queries
