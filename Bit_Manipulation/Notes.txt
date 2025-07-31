@@ -3,7 +3,7 @@
 - 31st bit is always for sign of number
 - (number - 1) = 2's Compliment + flipping the bits
 - Range of Int -> -2^31 to 2^31 - 1
-- For negative numbers, computer stores two's compliment(of +ve number i.e, -ve number without sign) in it
+- For negative numbers, computer stores two's compliment(of +ve number i.e, -ve number without sign) 
 - (2^31-1) << 1 -> overflow because number will go out of the boundary -> only perform left shift inside 32 bits
 - negation of number -> how computer stores it -> first flip the bits, then check it 31st bit if 1/0, if 1 then perform 2s Compliment of remaining bits and stores whole number or if that bit is 0 then nothing to do just store whole number (for +ve numbers)
 - For negation of -ve numbers, above process is done on 2's Compliment of the number.

@@ -3,6 +3,7 @@ using namespace std;
 #define ll long long int
 #define N 9
 
+// Time - O(9^(n*n))
 bool isValid(vector<vector<char>> &board, int row, int col, char c)
     {
         for(int i=0; i<9; i++)
