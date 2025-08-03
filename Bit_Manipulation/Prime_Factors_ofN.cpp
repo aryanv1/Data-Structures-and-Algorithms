@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long int
+#include <bits/stdc++.h> using namespace std; #define ll long long int
 
 bool isPrime(int n)
 {
@@ -12,6 +10,7 @@ bool isPrime(int n)
 	return true;
 }
 
+// Here not for all numbers we are checking prime so its time complexity is approx sqrt(n)*sqrt(n)
 vector<int> method1(int n)
 {
 	vector<int> ans;
@@ -52,7 +51,7 @@ vector<int> method3(int n)
 	{
 		if(n%i == 0)
 			ans.push_back(i);
-		while(n%i == 0) // dividing by its prime factor so multiple of it can divide it later and thus reducing value of n and time complexity
+		while(n%i == 0) // dividing by its prime factor so multiple of it can divide it later and thus reducing value of n and time complexity -> O(log(n))
 			n = n/i;
 	}
 	if(n != 1) ans.push_back(n); // for the case if n is prime itself then no i will divide it

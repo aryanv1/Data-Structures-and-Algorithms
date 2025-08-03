@@ -19,7 +19,7 @@
 
 - Unset the rightmost set bit -> for reverse do the same thing on negation of number and then again negate it
 	number & (number - 1)
-	number - 1 = unset the rightmost bit and all bits to its left remains same and all bits to its right becomes zero
+	number - 1 = unset the rightmost bit and all bits to its left remains same and all bits to its right becomes one 
 
 - Check if Power of 2 -> only have 1 set bit
 	if(num & (num - 1) == 0) then Yes else No -> unsetting the only bit will result in number becoming zero
@@ -30,3 +30,11 @@
 		n = n&(n-1);
 		cnt++;
 	}
+
+	can also do this:
+	while(n) 
+	{
+		cnt += (n&1);
+		n = n >> 1;
+	}
+	But will take slightly more time than above one
