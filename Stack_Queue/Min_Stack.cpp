@@ -2,12 +2,11 @@
 using namespace std;
 #define ll long long int
 
+// One Stack Approach can be push pair of val,minimum till now
+// To find min in O(1), just pop the second element of pair
+// But it will take O(2n) space in worst case
 stack<long long> s;
 long long mini = INT_MAX;
-
-MinStack() {
-
-}
 
 void push(int el) {
 	long long val = el;
