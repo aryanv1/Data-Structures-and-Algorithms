@@ -115,7 +115,7 @@ string Infix_Prefix(string s)
 			}
 			else
 			{
-				while(!st.empty() && prioirty(s[i]) < priority(st.top()))
+				while(!st.empty() && priority(s[i]) < priority(st.top()))
 				{
 					ans += st.top();
 					st.pop();

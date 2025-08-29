@@ -63,6 +63,11 @@ int main()
 
 // If the que is like - if you don't find a greater element on right then look on left side(circular array) and find greater element
 // In this case we just have to replace i with i%n and run the loop till i<2*n
+// We are looping from 2*n-1 to 0
+// So that we can maintain the stack for right side elements first and then left side elements
+// Here we can do by doubling the array and not considering second part of array for answer and just for finding greater element
+// But that will take O(2n) space
+// So we can just use i%n to get the index of original array
 
-// Time Complexity - O(n)
+// Time Complexity - O(2n)
 // Space Complexity - O(n)
