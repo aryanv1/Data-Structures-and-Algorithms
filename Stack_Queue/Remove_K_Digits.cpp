@@ -2,6 +2,8 @@
 using namespace std;
 #define ll long long int
 
+// Time Complexity - O(N)
+// Space Complexity - O(N)
 string removeZero(string &str) 
 { 
     // Count leading zeros 
@@ -54,6 +56,3 @@ int main()
 }
 
 // k=3  "1432219"
-
-// Time Complexity - O(N)
-// Space Complexity - O(N)

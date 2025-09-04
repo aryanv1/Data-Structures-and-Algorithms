@@ -2,6 +2,8 @@
 using namespace std;
 #define ll long long int
 
+// Time Complexity - O(n)
+// Space Complexity - O(n)
 vector<int> asteroidCollision(vector<int>& asteroids) 
 {
 	int n = asteroids.size();
@@ -61,5 +63,3 @@ int main()
 	return 0;
 }
 // 10,2,-5
-// Time Complexity - O(n)
-// Space Complexity - O(n)
