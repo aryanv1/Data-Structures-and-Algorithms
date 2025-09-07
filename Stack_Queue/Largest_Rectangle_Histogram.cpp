@@ -2,6 +2,10 @@
 using namespace std;
 #define ll long long int
 
+// Brute Force can be find the right and left smallest for every index
+// and then find the area for every index and return the max area.
+// Time Complexity - O(N^2)
+// Space Complexity - O(1)
 int largestRectangleArea(vector<int>& heights) 
 {
 	int n = heights.size();
@@ -44,5 +48,5 @@ int main()
 // Time Complexity - O(N)
 // Space Complexity - O(2*N)
 
-// This que is also solve by method of lse and rse - just frind these two for each index and then find area for every index and we are good to go.
-// here timee complexity will increase since we will be trversing more number of times and space complexity will also increase because we are storing lse and rse and using stcak as well.
+// This que is also solve by method of lse and rse - just find these two for each index and then find area for every index and we are good to go.
+// here time complexity will increase since we will be trversing more number of times and space complexity will also increase because we are storing lse and rse and using stcak as well.

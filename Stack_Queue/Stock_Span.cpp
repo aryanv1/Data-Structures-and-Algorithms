@@ -2,6 +2,8 @@
 using namespace std;
 #define ll long long int
 
+// Time Complexity - O(N)
+// Space Complexity - O(N)
 vector <int> calculateSpan(int price[], int n)
 {
 	vector<int> ans;
