@@ -2,50 +2,58 @@
 using namespace std;
 #define ll long long int
 
-string minWindow(string s, string t) 
+// Two-pass method (forward + backward) shrink
+// Time Complexity - O(n*m) nearly
+// Space Complexity - O(1)
+string minWindow(string s1, string s2)
 {
-    int n = s.size();
-    int m = t.size();
-    int minlen = INT_MAX;
-    int ind = -1,k = 0,j = 0,i = 0;
-    while(i < n)
+    int n = s1.size(), m = s2.size();
+    int minLen = INT_MAX, start = -1;
+
+    for (int i = 0; i < n; i++)
     {
-        if(s[i] == t[k])
-        k++;
-        if(k == m)
+        if (s1[i] == s2[0])
         {
-            j = i;
-            k--;
-            while(j>=0 && k>=0)
+            int j = 0, k = i;
+
+            // forward scan to match s2
+            while (k < n && j < m)
             {
-                if(s[j] == t[k])
-                    k--;
-                j--;
+                if (s1[k] == s2[j])
+                    j++;
+                k++;
             }
-            j++;
-            if(i-j+1 < minlen)
+
+            if (j == m)
             {
-                minlen = i-j+1;
-                ind = j;
+                // backward scan to shrink window
+                int end = k - 1;
+                j = m - 1;
+                while (end >= i)
+                {
+                    if (s1[end] == s2[j])
+                        j--;
+                    if (j < 0)
+                        break;
+                    end--;
+                }
+                if (minLen > (k - (end + 1)))
+                {
+                    minLen = k - (end + 1);
+                    start = end + 1;
+                }
             }
-            k = 0;
-            i = j; // actually j+1 should be there but after this i++ is happening so no issue
-            // And we should start from next char from it inorder to find another subsequence -> position of j will not matter
         }
-        i++;
     }
-    if(ind == -1) return "";
-    return s.substr(ind,minlen);
+
+    return (start == -1) ? "" : s1.substr(start, minLen);
 }
 
 int main()
 {
-	string s = "geeksforgeeks";
-	string t = "eksrg";
-	string ans = minWindow(s,t);
-	cout<<ans<<endl;
-	return 0;
+    string s = "geeksforgeeks";
+    string t = "eksrg";
+    string ans = minWindow(s, t);
+    cout << ans << endl;
+    return 0;
 }
-
-// Time Complexity - O(n*m) nearly
-// Space Complexity - O(1)

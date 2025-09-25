@@ -37,7 +37,7 @@ int main()
 {
 	string s = "timetopractice";
 	string t = "toc";
-	string ans = smallestWindow(s,t);
+	string ans = minWindow(s,t);
 	cout<<ans<<endl;
 	return 0;
 }

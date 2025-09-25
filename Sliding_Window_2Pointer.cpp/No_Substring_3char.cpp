@@ -10,6 +10,8 @@ int numberOfSubstrings(string s)
 	for(int i=0; i<n; i++)
 	{
 		arr[s[i]-'a'] = i;
+		// Number of subarrays ending at min index of a,b,c
+		// Number of elements before it will be part of answer
 		if(arr[0] != -1 && arr[1] != -1 && arr[2] != -1)
 		{
 			ans += 1 + min(arr[0],min(arr[2],arr[1]));
