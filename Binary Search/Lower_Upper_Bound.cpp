@@ -4,10 +4,10 @@ using namespace std;
 
 // Lower Bound - closest element greater or equal to given element
 // int idx = lower_bound(nums.begin(),nums.end(),target) - nums.begin();
-void lowerBound(vector<int> &arr, int k) {
+int lowerBound(vector<int> &arr, int k) {
 	int low = 0;
 	int high = arr.size()-1;
-	int ans = n;
+	int ans = arr.size();
 	while(low <= high)
 	{
 		int mid = (low + high)/2;
@@ -24,10 +24,10 @@ void lowerBound(vector<int> &arr, int k) {
 
 // Upper Bound - closest element greater than given element
 // int idx = upper_bound(nums.begin(),nums.end(),target) - nums.begin();
-void upperBound(vector<int> &arr, int k) {
+int upperBound(vector<int> &arr, int k) {
 	int low = 0;
 	int high = arr.size()-1;
-	int ans = n;
+	int ans = arr.size();
 	while(low <= high)
 	{
 		int mid = (low + high)/2;
