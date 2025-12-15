@@ -2,40 +2,34 @@
 using namespace std;
 #define ll long long int
 
-int swimInWater(vector<vector<int>>& grid) 
+// Time Complexity - O(N*N*log(N*N)) -> for each cell we are doing log(N*N) operations
+// Space Complexity - O(N*N) for vis array and O(N*N) for priority queue
+int swimInWater(vector<vector<int>> &grid)
 {
 	int n = grid.size();
-	priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>> > q;
-	vector<vector<int>> vis(n,vector<int>(n,0));
-	q.push({grid[0][0],{0,0}});
+	using T = pair<int, pair<int, int>>;
+	vector<vector<int>> vis(n, vector<int>(n, 0));
+	priority_queue<T, vector<T>, greater<T>> pq;
+	pq.push({grid[0][0], {0, 0}});
 	vis[0][0] = 1;
-	int dr[4] = {-1,0,1,0};
-	int dc[4] = {0,1,0,-1};
-	while(!q.empty())
+	int dr[4] = {-1, 0, 1, 0};
+	int dc[4] = {0, 1, 0, -1};
+	while (!pq.empty())
 	{
-		int i = q.top().second.first;
-		int j = q.top().second.second;
-		int time = q.top().first;
-		q.pop();
-
-		if(i == n-1 && j == n-1)
-			return time;
-
-		for(int k=0; k<4; k++)
+		int t = pq.top().first;
+		int i = pq.top().second.first;
+		int j = pq.top().second.second;
+		pq.pop();
+		if (i == n - 1 && j == n - 1)
+			return max(t, grid[n - 1][n - 1]);
+		for (int k = 0; k < 4; k++)
 		{
-			int newR = i + dr[k];
-			int newC = j + dc[k];
-			if(newR>=0 && newR<n && newC>=0 && newC<n && !vis[newR][newC])
+			int r = i + dr[k];
+			int c = j + dc[k];
+			if (r >= 0 && r < n && c >= 0 && c < n && !vis[r][c])
 			{
-				if(grid[newR][newC] <= time)
-				{
-					q.push({time,{newR,newC}});
-				}
-				else
-				{
-					q.push({grid[newR][newC],{newR,newC}});
-				}
-				vis[newR][newC] = 1;
+				vis[r][c] = 1;
+				pq.push({max(t, grid[r][c]), {r, c}});
 			}
 		}
 	}
@@ -44,6 +38,6 @@ int swimInWater(vector<vector<int>>& grid)
 
 int main()
 {
-	
+
 	return 0;
 }

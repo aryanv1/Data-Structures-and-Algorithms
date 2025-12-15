@@ -2,7 +2,9 @@
 using namespace std;
 #define ll long long int
 
-int minimumMultiplications(vector<int> &arr,int start, int end)
+// Time Complexity - O(N*K) where N is size of arr and K is 10^5 (mod value)
+// Space Complexity - O(K) for dist array and O(K) for queue in worst case
+int minimumMultiplications(vector<int> &arr, int start, int end)
 {
     // Create a queue for storing the numbers as a result of multiplication
     // of the numbers in the array and the start number.
@@ -47,7 +49,7 @@ int minimumMultiplications(vector<int> &arr,int start, int end)
 
 int main()
 {
-	int start = 3, end = 30;
+    int start = 3, end = 30;
 
     vector<int> arr = {2, 5, 7};
 
@@ -55,5 +57,5 @@ int main()
 
     cout << ans;
     cout << endl;
-	return 0;
+    return 0;
 }
