@@ -1,0 +1,112 @@
+#include <bits/stdc++.h> // bits/stdc++.h
+using namespace std;
+
+// Similar questions with given maximum k transactions allowed
+// Just replace 2 with k in the code
+
+// Memoization
+// Time Complexity: O(N*2*3)
+// Space Complexity: O(N*2*3) + O(N) for recursion stack
+int getAns(vector<int> &Arr, int n, int ind, int buy, int cap, vector<vector<vector<int>>> &dp)
+{
+    // Base case: If we reach the end of the array or run out of allowed transactions, return 0.
+    if (ind == n || cap == 0)
+        return 0;
+
+    // If the result is already calculated, return it.
+    if (dp[ind][buy][cap] != -1)
+        return dp[ind][buy][cap];
+
+    int profit;
+
+    if (buy == 0)
+    { // We can buy the stock
+        profit = max(0 + getAns(Arr, n, ind + 1, 0, cap, dp),
+                     -Arr[ind] + getAns(Arr, n, ind + 1, 1, cap, dp));
+    }
+
+    if (buy == 1)
+    { // We can sell the stock
+        profit = max(0 + getAns(Arr, n, ind + 1, 1, cap, dp),
+                     Arr[ind] + getAns(Arr, n, ind + 1, 0, cap - 1, dp));
+    }
+
+    // Store and return the calculated profit.
+    return dp[ind][buy][cap] = profit;
+}
+
+// Tabulation
+// Time Complexity: O(N*2*3)
+// Space Complexity: O(N*2*3)
+int maxProfit(vector<int> &Arr, int n)
+{
+    // Creating a 3D DP array of size [n+1][2][3] initialized to 0
+    vector<vector<vector<int>>> dp(n + 1, vector<vector<int>>(2, vector<int>(3, 0)));
+
+    // Base case: dp array is already initialized to 0, covering the base case.
+
+    for (int ind = n - 1; ind >= 0; ind--)
+    {
+        for (int buy = 0; buy <= 1; buy++)
+        {
+            for (int cap = 1; cap <= 2; cap++) // Not starting from 0 because its base case -> at cap=0 profit=0
+            {
+                if (buy == 0)
+                { // We can buy the stock
+                    dp[ind][buy][cap] = max(0 + dp[ind + 1][0][cap],
+                                            -Arr[ind] + dp[ind + 1][1][cap]);
+                }
+
+                if (buy == 1)
+                { // We can sell the stock
+                    dp[ind][buy][cap] = max(0 + dp[ind + 1][1][cap],
+                                            Arr[ind] + dp[ind + 1][0][cap - 1]);
+                }
+            }
+        }
+    }
+
+    // The result is stored in dp[0][0][2] which represents maximum profit after the final transaction.
+    return dp[0][0][2];
+}
+
+// Space Optimization
+// Time Complexity: O(N*2*3)
+// Space Complexity: O(2*3)
+int maxProfit(vector<int> &Arr, int n)
+{
+    // Create two 2D arrays to store the profit information, one for the current state and one for the ahead state.
+    vector<vector<int>> ahead(2, vector<int>(3, 0));
+    vector<vector<int>> cur(2, vector<int>(3, 0));
+
+    for (int ind = n - 1; ind >= 0; ind--)
+    {
+        for (int buy = 0; buy <= 1; buy++)
+        {
+            for (int cap = 1; cap <= 2; cap++)
+            {
+                if (buy == 0)
+                { // We can buy the stock
+                    cur[buy][cap] = max(0 + ahead[0][cap],
+                                        -Arr[ind] + ahead[1][cap]);
+                }
+
+                if (buy == 1)
+                { // We can sell the stock
+                    cur[buy][cap] = max(0 + ahead[1][cap],
+                                        Arr[ind] + ahead[0][cap - 1]);
+                }
+            }
+        }
+        // Update the ahead state with the current state for the next iteration.
+        ahead = cur;
+    }
+
+    return ahead[0][2];
+}
+
+int main()
+{
+
+    return 0;
+}

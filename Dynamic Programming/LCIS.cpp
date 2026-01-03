@@ -6,7 +6,7 @@ using namespace std;
 // Here we are finding Longest Common Increasing Subsequence
 // Logic is we are calculating LIS on array b for every element in array a
 // and maintaining maximum length of increasing subsequence found
-// so far for elements smaller than current element of a
+// so far for elements smaller than current element of a in maxCount variable
 int LCIS(vector<int> &a, vector<int> &b)
 {
     // code here
